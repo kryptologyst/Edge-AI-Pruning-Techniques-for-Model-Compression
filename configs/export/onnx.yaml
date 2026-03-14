@@ -1,0 +1,26 @@
+# Export configurations
+_target_: src.export.exporters.ONNXExporter
+
+# Export formats
+formats: ["onnx", "tflite", "coreml"]
+
+# ONNX specific
+onnx:
+  opset_version: 11
+  dynamic_axes: true
+  optimize: true
+  
+# TensorFlow Lite specific
+tflite:
+  quantization: "int8"  # float32, int8, int16
+  representative_dataset: true
+  
+# CoreML specific
+coreml:
+  minimum_deployment_target: "13.0"
+  compute_units: "all"  # all, cpu_only, cpu_and_gpu
+  
+# Export settings
+export_dir: "exports"
+save_metadata: true
+include_optimization_report: true

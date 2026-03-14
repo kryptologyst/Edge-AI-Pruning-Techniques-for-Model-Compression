@@ -1,0 +1,30 @@
+# Device configurations
+_target_: src.utils.device.DeviceManager
+
+# Device selection
+device: "auto"  # auto, cpu, cuda, mps
+fallback_to_cpu: true
+
+# Performance settings
+num_threads: 4
+pin_memory: true
+non_blocking: true
+
+# Edge device specific
+edge_devices:
+  raspberry_pi:
+    device: "cpu"
+    num_threads: 2
+    memory_limit: "1GB"
+  jetson_nano:
+    device: "cuda"
+    num_threads: 4
+    memory_limit: "4GB"
+  android:
+    device: "cpu"
+    num_threads: 2
+    memory_limit: "512MB"
+  ios:
+    device: "cpu"
+    num_threads: 2
+    memory_limit: "256MB"

@@ -1,0 +1,48 @@
+# Default configuration for Edge AI Pruning Project
+defaults:
+  - _self_
+  - override /model: mnist_cnn
+  - override /pruning: magnitude_pruning
+  - override /device: cpu
+  - override /export: onnx
+
+# Project settings
+project:
+  name: "edge-ai-pruning"
+  version: "1.0.0"
+  description: "Edge AI Model Compression via Pruning Techniques"
+  
+# Data configuration
+data:
+  dataset: "mnist"
+  batch_size: 128
+  num_workers: 4
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  
+# Training configuration
+training:
+  epochs: 10
+  learning_rate: 0.001
+  weight_decay: 1e-4
+  scheduler: "cosine"
+  early_stopping:
+    patience: 5
+    min_delta: 0.001
+    
+# Evaluation configuration
+evaluation:
+  metrics: ["accuracy", "f1", "precision", "recall"]
+  save_predictions: true
+  confusion_matrix: true
+  
+# Logging configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/training.log"
+  
+# Reproducibility
+seed: 42
+deterministic: true

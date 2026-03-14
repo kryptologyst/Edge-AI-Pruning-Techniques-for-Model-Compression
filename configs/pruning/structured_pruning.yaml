@@ -1,0 +1,22 @@
+"""Structured pruning configuration."""
+
+# Structured pruning configuration
+_target_: src.models.pruning.StructuredPruning
+
+# Pruning parameters
+sparsity: 0.3
+pruning_type: "structured"
+schedule: "constant"
+
+# Structured pruning specific
+structured_pattern: "channel"  # channel, filter, block
+structured_ratio: 0.3
+
+# Training schedule
+begin_step: 0
+end_step: 1000
+frequency: 100
+
+# Fine-tuning after pruning
+finetune_epochs: 5
+finetune_lr: 0.0001

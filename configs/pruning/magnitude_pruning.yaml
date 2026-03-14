@@ -1,0 +1,24 @@
+# Pruning configurations
+_target_: src.models.pruning.MagnitudePruning
+
+# Pruning parameters
+sparsity: 0.5
+pruning_type: "magnitude"  # magnitude, structured, channel
+schedule: "polynomial"  # polynomial, constant, gradual
+
+# Magnitude pruning specific
+magnitude_threshold: 0.01
+preserve_ratio: 0.1
+
+# Structured pruning specific
+structured_pattern: "channel"  # channel, filter, block
+structured_ratio: 0.3
+
+# Training schedule
+begin_step: 0
+end_step: 1000
+frequency: 100
+
+# Fine-tuning after pruning
+finetune_epochs: 5
+finetune_lr: 0.0001
